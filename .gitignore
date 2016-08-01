@@ -6,3 +6,5 @@ node_modules
 
 # Ignore real addresses of people this is being printed for
 send.to
+*.ps
+*.pdf

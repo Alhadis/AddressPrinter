@@ -58,6 +58,7 @@
 .	ie \\$1<\\$2 \{
 .
 .		\" Output the stored address
+.		fA
 .		t\\$1
 .
 .		\" Increment counter; print next address
@@ -71,6 +72,7 @@
 .\" .AS: Address summary
 .de AS
 .	if \\$1 .tm Maximum width: \\nW
+.	ll \\nW
 .	PA 1 \\n(.# \\$1
 ..
 .

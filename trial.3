@@ -1,0 +1,99 @@
+.\" Silence Groff if not running in compatibility mode
+.if \n(.g .if !\n(.C \{
+.	tm Notice: Synthesising ".TO/.FROM" macros
+.	de TO:
+.		TO
+.	.
+.
+.	de FROM:
+.		FR
+.	.
+.\}
+'
+'
+.nr .# 0  \" Number of addresses collected
+.nr W  0  \" Maximum address width
+.nr F  0  \" Whether the sender address is being defined
+.
+.\" Define sender address
+.de FR
+.	nf
+.	nr F 1
+.	di fA
+..
+.
+.\" Mark current location as the end of another address
+.de MK
+.	if !'\\n(.z'' .di
+.	nr .# \\n(.#+1
+.
+.	\" Update maximum widths
+.	if \\n(dl>\\nW .nr W \\n(dl
+.
+.	nr w\\n(.# \\n(dl
+.	nr h\\n(.# \\n(dn
+..
+.\" Begin collecting input for a new address
+.de TO
+.	if \\nF \{
+.		tm Done collecting sender address
+.		nr F 0
+.		di
+.	\}
+.	nf
+.	MK
+.	di t\\n(.#
+..
+.\" EOF macro
+.de EN
+.	MK
+.	AS
+..
+.em EN
+.
+.\" .PA [n]: Print [n]th address 
+.de PA
+.	if \\$3 .tm #\\$1: \\n(w\\$1 x \\n(h\\$1
+.
+.	ie \\$1<\\$2 \{
+.
+.		\" Output the stored address
+.		t\\$1
+.
+.		\" Increment counter; print next address
+.		nr in \\$1+1
+.		PA \\n(in \\$2 \\$3
+.		rr in
+.	\}
+.	el .if \\$3 .tm Done
+..
+.
+.\" .AS: Address summary
+.de AS
+.	if \\$1 .tm Maximum width: \\nW
+.	PA 1 \\n(.# \\$1
+..
+.
+.FROM:
+Your Name
+LPO Box 99, Post Office
+Town, State 0644
+Country
+
+.TO:
+Their Name
+LPO Box 01, Post Office
+Town, State 0001
+Country
+
+.TO:
+Their Name
+LPO Box 02, Post Office
+Town, State 0002
+Country
+
+.TO:
+Their Name
+LPO Box 03, Post Office
+Town, State 0003
+Country

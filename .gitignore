@@ -1,0 +1,8 @@
+# Ignore usual garbage
+node_modules
+.DS_Store
+._*
+
+
+# Ignore real addresses of people this is being printed for
+send.to

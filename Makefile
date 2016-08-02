@@ -2,7 +2,7 @@ all: clean result.ps
 
 %.ps:
 	@rm -rf $@
-	@groff -C ./send.to > $@
+	@groff -C -P-l ./send.to > $@
 	@osascript close.scpt $*
 	@open $@
 

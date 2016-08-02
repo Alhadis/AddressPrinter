@@ -8,6 +8,12 @@
 .	de FROM:
 .		FR
 .	.
+.
+.	de FONT
+.		ds fN \\$2
+.		substring fN 0 1
+.		FO NT \\$1 \\*(fN
+.	.
 .\}
 '
 '
@@ -15,6 +21,15 @@
 .nr W  0  \" Maximum address width
 .nr F  0  \" Whether the sender address is being defined
 .
+.\" Set the font's typeface and point-size adjustment
+.de FO
+.	ie \\n(.$<3 .FONT \\$1 \\$2
+.	el \{
+.		ps \\$2
+.		vs \\$2
+.		ft \\$3
+'	\}
+..
 .\" Define sender address
 .de FR
 .	nf

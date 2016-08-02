@@ -1,33 +1,3 @@
-.ig
-===================================[ USAGE ]================================
-
-1. Add the following lines to `send.to`:
-	
-	.so ./trial.3
-	.ft CLARENDON
-	.ps 24
-	
-	.FROM:
-	Your Name
-	Street Address
-	Locality, Region
-	Country, Postcode
-	
-	.TO:
-	Receiver's name
-	Their address
-	Etc.
-	
-	.TO:
-	Another receiver's name
-	Rinse and repeat
-
-2. Run off a copy:
-
-	$ groff -Tps -C send.to > these-guys.ps
-
-================================================================================
-..
 .\" Silence Groff if not running in compatibility mode
 .if \n(.g .if !\n(.C \{
 .	tm Notice: Synthesising ".TO/.FROM" macros

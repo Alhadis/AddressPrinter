@@ -1,0 +1,46 @@
+.\" Exit instruction
+.ds E Hit ENTER twice to finish.
+.
+.\" Prompt user to provide their postal address
+.de FR
+.	di dF \" Start diversion
+.	tm Enter your address. \*E
+.	rd    \" Ask for input
+.	di    \" End diversion
+.
+.	\" Check if we received input
+.	if \\n(dl>0 \{\
+\&.FROM:
+.		dF \" Output diversion's content
+.		sp \" Insert an extra line-break
+.	\}
+..
+.
+.\" Prompt user to provide a receiving address
+.de TO
+.	di dT
+.	tm Enter a destination address. \*E
+.	if \\$1>0 \{
+.		tm NOTE: If you're done adding addresses, just hit enter twice without entering anything.
+.	\}
+.	rd
+.	di
+.
+.	\" Check if user entered anything
+.	if \\n(dl>0 \{\
+\&.TO:
+.		dT    \" Display diversion's content
+.		sp    \" Insert an extra line-break
+.		TO 1  \" Repeat
+.	\}
+..
+.
+.\"==[ BEGIN OUTPUT ]===========================================================
+.nf
+\&.\e" -*- nroff -*-
+\&.so ./addr-label.1
+\&.FONT +12 CLARENDON
+\&.vs +2.5
+\&.
+.FR
+.TO

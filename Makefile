@@ -1,6 +1,9 @@
-src := ./send.to
+src := send.to
 
 all: clean result.ps
+
+# Alias for `make send.to`
+template: $(src)
 
 n:
 	@nroff -C $(src) | less
@@ -11,7 +14,12 @@ n:
 	@osascript close.scpt $*
 	@open $@
 
+$(src):
+	@rm -rf $(src)
+	@groff -C -Tascii addr-template.1 > $@
+	@perl -0777 -pi -e 's/\s+$$/\n/' $@
+
 clean:
 	@rm -rf $(wildcard *.pdf) $(wildcard *.ps)
 
-.PHONY: clean n
+.PHONY: clean n $(src)

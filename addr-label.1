@@ -89,7 +89,7 @@
 .\" .PF: Print "from:" address
 .de PF
 .	nr Y \\n(nl
-.	in \\nw
+.	in \\nWu+2m
 .	fA
 .	nr o (\\n(nl-\\nY)/\\n(.v
 .	sp -\\no
@@ -98,8 +98,6 @@
 .
 .\" .AS: Address summary
 .de AS
-.	\" Finalise calculations
-.	nr w \\nW/\\n(.s
 .	if \\$1 .tm Maximum width: \\nw (\\nW)
 .	PA 1 \\n(.# \\$1
 ..

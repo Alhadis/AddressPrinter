@@ -1,25 +1,32 @@
-src := send.to
+addresses := send.to
+target    := result.ps
 
-all: clean result.ps
+all: $(addresses) $(target)
 
-# Alias for `make send.to`
-template: $(src)
 
-n:
-	@nroff -C $(src) | less
+$(target):
+	@groff -C -P-l $(addresses) > $@
 
-%.ps:
-	@rm -rf $@
-	@groff -C -P-l $(src) > $@
-	@osascript close.scpt $*
-	@open $@
 
-$(src):
-	@rm -rf $(src)
+# Generate an address template from user-supplied input
+$(addresses):
 	@groff -C -Tascii addr-template.1 > $@
-	@perl -0777 -pi -e 's/\s+$$/\n/' $@
+	@hash perl 2>/dev/null && perl -0777 -pi -e 's/\s+$$/\n/' $@ || true
 
+
+# Delete generated files
 clean:
-	@rm -rf $(wildcard *.pdf) $(wildcard *.ps)
+	@rm -f $(addresses) $(target)
 
-.PHONY: clean n $(src)
+
+
+# Open the generated PostScript file in Preview
+.PHONY: preview
+preview: $(addresses) $(target)
+	@osascript close.scpt $(basename $(target)) 2>/dev/null || true
+	@open $(target)
+
+
+# Show approximation of output using nroff
+tty:
+	@nroff -C $(addresses) | less

@@ -1,7 +1,9 @@
 Address Printer
 ===============
 
-Little toy I wrote to print off address-labels for sticking on parcels.
+Little toy I wrote to print off address-labels for sticking on parcels or envelopes.
+
+![No, those aren't real addresses](preview.jpg)
 
 
 #### Usage

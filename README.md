@@ -3,7 +3,7 @@ Address Printer
 
 Little toy I wrote to print off address-labels for sticking on parcels or envelopes.
 
-![No, those aren't real addresses](preview.jpg)
+<img src="preview.jpg" width="660" alt="No, those aren't real addresses" />
 
 
 #### Usage

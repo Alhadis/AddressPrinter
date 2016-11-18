@@ -4,8 +4,9 @@ target    := result.ps
 all: $(addresses) $(target)
 
 
-$(target):
-	@groff -C -P-l $(addresses) > $@
+# Generate PostScript file from address template
+$(target): $(addresses)
+	@groff -C -P-l $^ > $@
 
 
 # Generate an address template from user-supplied input

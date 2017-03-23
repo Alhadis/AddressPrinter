@@ -21,7 +21,7 @@
 .nr W  0  \" Maximum address width
 .nr F  0  \" Whether the sender address is being defined
 .
-.\" Set the font's typeface and point-size adjustment
+.\" Set font's typeface and point-size properties
 .de FO
 .	ie \\n(.$<3 .FONT \\$1 \\$2
 .	el \{
@@ -68,7 +68,7 @@
 ..
 .em EN
 .
-.\" .PA [n]: Print [n]th address 
+.\" .PA [n]: Print [n]th address
 .de PA
 .	if \\$3 .tm #\\$1: \\n(w\\$1 x \\n(h\\$1
 .
